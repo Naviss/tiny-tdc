@@ -5,7 +5,7 @@ module ring_oscillator #(
     input i_nreset,
     output o_pulse
 );
-    wire [LENGTH-1:0];
+    wire [LENGTH-1:0] ring;
     reg en;
 
     always @(posedge i_start or negedge i_nreset) begin
