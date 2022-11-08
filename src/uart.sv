@@ -17,6 +17,8 @@ always @(posedge clk) begin
   if(rst) begin
       serializer_state <= IDLE;
       bit_counter <= 0;
+      axi_ready <= 0;
+
   end
   else begin
       case (serializer_state)

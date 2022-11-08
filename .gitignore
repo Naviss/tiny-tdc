@@ -1,4 +1,7 @@
+__pycache__
 .DS_Store
 .idea
 .vscode
 *.vcd
+sim_build
+*.xml

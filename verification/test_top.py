@@ -15,3 +15,5 @@ async def test_7seg(dut):
     dut.rst.value = 1
     await ClockCycles(dut.clk, 10)
     dut.rst.value = 0
+    await ClockCycles(dut.clk, 100)
+

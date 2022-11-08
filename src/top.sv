@@ -11,8 +11,9 @@ module top (
     logic [7:0] axi_data;
     logic axi_ready;
     logic axi_valid;
-
-
+    
+    assign axi_data = 8'hAF;
+    assign axi_valid = 1;
     Uart uart_instance (
         .clk(clk),
         .rst(rst),
