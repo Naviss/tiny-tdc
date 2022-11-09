@@ -10,9 +10,6 @@ module Naviss_top (
     logic stop;
     logic uart_tx;
 
-    logic [7:0] axi_data;
-    logic axi_ready;
-    logic axi_valid;
 
     assign clk = io_in[0];
     assign rst = io_in[1];
@@ -21,25 +18,28 @@ module Naviss_top (
 
     assign io_out[0] = uart_tx;
     
-    assign axi_data = 8'h00;
-    assign axi_valid = 1;
+    
+    logic [7:0] counter_data;
+    logic counter_valid;
+    logic axi_ready;
 
-    logic ring_pulse;
 
     tdc tdc_instance
     (
+        .clk(clk),
         .rst(rst),
         .start(start),
-        .stop(stop),
-        .o_pulse(ring_pulse)
+        .stop(stop), 
+        .counter_data(counter_data),
+        .counter_valid(counter_valid)
     );
 
     Uart uart_instance (
         .clk(clk),
         .rst(rst),
-        .axi_valid(axi_valid),
+        .axi_valid(counter_valid),
         .axi_ready(axi_ready),
-        .axi_data(axi_data),
+        .axi_data(counter_data),
         .uart_tx(uart_tx)
     );
     
