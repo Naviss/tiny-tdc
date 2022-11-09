@@ -21,8 +21,9 @@ module Naviss_top (
 
     assign io_out[0] = uart_tx;
     
-    assign axi_data = 8'hAF;
+    assign axi_data = 8'h00;
     assign axi_valid = 1;
+
     Uart uart_instance (
         .clk(clk),
         .rst(rst),

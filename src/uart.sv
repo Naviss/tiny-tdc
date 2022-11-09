@@ -9,9 +9,9 @@ module Uart (
   output logic uart_tx
 );
     
-typedef enum logic { IDLE, DATA } serializer_state_t;
+typedef enum logic { IDLE, TRANSMIT  } serializer_state_t;
 serializer_state_t serializer_state;
-logic [2:0] bit_counter;
+logic [3:0] bit_counter;
 
 always @(posedge clk) begin
   if(rst) begin
@@ -19,17 +19,15 @@ always @(posedge clk) begin
       bit_counter <= 0;
       axi_ready <= 0;
       uart_tx <= 1;
-
   end
   else begin
       case (serializer_state)
           IDLE : begin
               if (axi_valid == 1) begin
-                  serializer_state <= DATA;
+                  serializer_state <= TRANSMIT ;
                   uart_tx <= 0;
                   axi_ready <= 0;
-                  bit_counter <= 1;
-
+                  bit_counter <= 0;
               end else begin
                   axi_ready <= 1;
                   bit_counter <= 0;
@@ -37,15 +35,16 @@ always @(posedge clk) begin
               end
           end
 
-          DATA: begin
-              uart_tx <= axi_data[bit_counter];
-              bit_counter <= bit_counter + 1;
-              axi_ready <= 0;
-
-              if (bit_counter == 7) begin
+          TRANSMIT : begin
+              if (bit_counter == 8) begin
                   axi_ready <= 1;
-                  bit_counter <= 1;
+                  bit_counter <= 0;
                   serializer_state <= IDLE;
+                  uart_tx <= 1;
+              end else begin
+                  uart_tx <= axi_data[bit_counter];
+                  bit_counter <= bit_counter + 1;
+                  axi_ready <= 0;
               end
           end
       endcase
