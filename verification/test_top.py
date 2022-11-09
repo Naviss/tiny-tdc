@@ -8,12 +8,12 @@ segments = [ 63, 6, 91, 79, 102, 109, 124, 7, 127, 103 ]
 @cocotb.test()
 async def test_7seg(dut):
     dut._log.info("start")
-    clock = Clock(dut.io_in[0], 10, units="us")
+    clock = Clock(dut.clk, 10, units="us")
     cocotb.fork(clock.start())
     
     dut._log.info("reset")
-    dut.io_in[1].value = 1
+    dut.rst.value = 1
     await ClockCycles(dut.clk, 10)
-    dut.io_in[1].value = 0
+    dut.rst.value = 0
     await ClockCycles(dut.clk, 100)
 

@@ -10,25 +10,25 @@ module tb (
     // testbench is controlled by test.py
     input clk,
     input rst,
-    input start; 
-    input stop;
-    output uart_tx;
+    input start, 
+    input stop,
+    output uart_tx
    );
 
     // this part dumps the trace to a vcd file that can be viewed with GTKWave
     initial begin
         $dumpfile ("tb.vcd");
         $dumpvars (0, tb);
-        #1;
+        #10000;
     end
 
     // wire up the inputs and outputs
     wire [7:0] inputs = {6'b0, rst, clk};
     wire [7:0] outputs;
-    assign segments = outputs[6:0];
+    assign uart_tx = outputs[0];
 
     // instantiate the DUT
-    Naviss_top #(.MAX_COUNT(100)) top(
+    Naviss_top top(
         .io_in  (inputs),
         .io_out (outputs)
         );

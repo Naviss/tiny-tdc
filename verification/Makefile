@@ -2,14 +2,13 @@
 # See https://docs.cocotb.org/en/stable/quickstart.html for more info
 
 # defaults
-SIM ?= verilator
+SIM ?= icarus
 TOPLEVEL_LANG ?= verilog
 
-VERILOG_SOURCES += $(PWD)/../src/Naviss_top.sv $(PWD)/../src/uart.sv
+VERILOG_SOURCES += $(PWD)/../src/Naviss_top.sv $(PWD)/../src/uart.sv $(PWD)/../src/tb.v
 
 # TOPLEVEL is the name of the toplevel module in your Verilog or VHDL file
-TOPLEVEL = Naviss_top
-EXTRA_ARGS += --trace --trace-structs
+TOPLEVEL = tb
 
 # MODULE is the basename of the Python test file
 MODULE = test_top

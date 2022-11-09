@@ -18,6 +18,7 @@ always @(posedge clk) begin
       serializer_state <= IDLE;
       bit_counter <= 0;
       axi_ready <= 0;
+      uart_tx <= 1;
 
   end
   else begin
