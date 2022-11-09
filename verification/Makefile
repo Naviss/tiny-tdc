@@ -5,7 +5,7 @@
 SIM ?= verilator
 TOPLEVEL_LANG ?= verilog
 
-VERILOG_SOURCES += $(PWD)/../src/top.sv $(PWD)/../src/uart.sv
+VERILOG_SOURCES += $(PWD)/../src/Naviss_top.sv $(PWD)/../src/uart.sv
 
 # TOPLEVEL is the name of the toplevel module in your Verilog or VHDL file
 TOPLEVEL = Naviss_top
