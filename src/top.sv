@@ -28,6 +28,7 @@ module Naviss_top (
 
     tdc tdc_instance
     (
+        .rst(rst),
         .start(start),
         .stop(stop),
         .o_pulse(ring_pulse)
