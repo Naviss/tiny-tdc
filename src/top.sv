@@ -1,16 +1,25 @@
 `default_nettype none
 
-module top (
-  input logic clk,
-  input logic rst, 
-  input logic start, 
-  input logic stop, 
-  output logic uart_tx
+module Naviss_top (
+  input [7:0] io_in,
+  output [7:0] io_out
 );
-    
+    logic clk;
+    logic rst;
+    logic start; 
+    logic stop;
+    logic uart_tx;
+
     logic [7:0] axi_data;
     logic axi_ready;
     logic axi_valid;
+
+    assign clk = io_in[0];
+    assign rst = io_in[1];
+    assign start = io_in[2];
+    assign stop = io_in[3];
+
+    assign io_out[0] = uart_tx;
     
     assign axi_data = 8'hAF;
     assign axi_valid = 1;
