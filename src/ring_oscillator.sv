@@ -5,8 +5,8 @@ module ring_oscillator #(
     input i_nreset,
     output o_pulse
 );
-    wire [LENGTH-1:0] ring;
-    reg en;
+    logic [LENGTH-1:0] ring;
+    logic en;
 
     always @(posedge i_start or negedge i_nreset) begin
         if (i_nreset == 0) begin
@@ -17,8 +17,12 @@ module ring_oscillator #(
     end
 
 
-    assign ring[0] = en and ring[LENGTH-1];
-    for (i = 0; i < LENGTH-1; i++) {
-        assign ring[i+1] = not ring[i];
-    }
+    always @(*) begin
+        ring[0] <= en && ring[LENGTH-1];
+        for (int i = 0; i < LENGTH-1; i++) begin
+            ring[i+1] = !ring[i];
+        end
+    end
+
+
 endmodule

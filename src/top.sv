@@ -24,6 +24,15 @@ module Naviss_top (
     assign axi_data = 8'h00;
     assign axi_valid = 1;
 
+    logic ring_pulse;
+
+    ring_oscillator ring_oscillator_instance
+    (
+        .i_start(start),
+        .i_nreset(rst),
+        .o_pulse(ring_pulse)
+    );
+
     Uart uart_instance (
         .clk(clk),
         .rst(rst),

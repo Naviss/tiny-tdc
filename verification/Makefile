@@ -5,7 +5,7 @@
 SIM ?= icarus
 TOPLEVEL_LANG ?= verilog
 
-VERILOG_SOURCES += $(PWD)/../src/top.sv $(PWD)/../src/uart.sv $(PWD)/../src/tb.v
+VERILOG_SOURCES += $(PWD)/../src/top.sv $(PWD)/../src/uart.sv $(PWD)/../src/tb.v $(PWD)/../src/ring_oscillator.sv
 
 # TOPLEVEL is the name of the toplevel module in your Verilog or VHDL file
 TOPLEVEL = tb
