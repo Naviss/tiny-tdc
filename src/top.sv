@@ -26,10 +26,10 @@ module Naviss_top (
 
     logic ring_pulse;
 
-    ring_oscillator ring_oscillator_instance
+    tdc tdc_instance
     (
-        .i_start(start),
-        .i_nreset(rst),
+        .start(start),
+        .stop(stop),
         .o_pulse(ring_pulse)
     );
 

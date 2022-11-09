@@ -23,7 +23,7 @@ module tb (
     end
 
     // wire up the inputs and outputs
-    wire [7:0] inputs = {6'b0, rst, clk};
+    wire [7:0] inputs = {6'b0,stop, start, rst, clk};
     wire [7:0] outputs;
     assign uart_tx = outputs[0];
 

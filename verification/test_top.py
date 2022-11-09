@@ -10,10 +10,18 @@ async def test_7seg(dut):
     dut._log.info("start")
     clock = Clock(dut.clk, 10, units="us")
     cocotb.fork(clock.start())
-    
+    dut.stop.value = 0
+    dut.start.value = 0
+
     dut._log.info("reset")
     dut.rst.value = 1
     await ClockCycles(dut.clk, 10)
     dut.rst.value = 0
-    await ClockCycles(dut.clk, 100)
-
+    await ClockCycles(dut.clk, 10)
+    dut.start.value = 1
+    await ClockCycles(dut.clk, 1)
+    dut.stop.value = 1
+    await ClockCycles(dut.clk, 10)
+    dut.stop.value = 0
+    dut.start.value = 0
+    await ClockCycles(dut.clk, 10)
