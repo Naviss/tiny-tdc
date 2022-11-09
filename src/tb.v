@@ -10,7 +10,9 @@ module tb (
     // testbench is controlled by test.py
     input clk,
     input rst,
-    output [6:0] segments
+    input start; 
+    input stop;
+    output uart_tx;
    );
 
     // this part dumps the trace to a vcd file that can be viewed with GTKWave
@@ -26,7 +28,7 @@ module tb (
     assign segments = outputs[6:0];
 
     // instantiate the DUT
-    seven_segment_seconds #(.MAX_COUNT(100)) seven_segment_seconds(
+    Naviss_top #(.MAX_COUNT(100)) top(
         .io_in  (inputs),
         .io_out (outputs)
         );
