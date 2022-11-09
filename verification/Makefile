@@ -8,7 +8,7 @@ TOPLEVEL_LANG ?= verilog
 VERILOG_SOURCES += $(PWD)/../src/top.sv $(PWD)/../src/uart.sv
 
 # TOPLEVEL is the name of the toplevel module in your Verilog or VHDL file
-TOPLEVEL = top
+TOPLEVEL = Naviss_top
 EXTRA_ARGS += --trace --trace-structs
 
 # MODULE is the basename of the Python test file
